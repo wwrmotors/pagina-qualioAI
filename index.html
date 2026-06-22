@@ -68,8 +68,8 @@
     background: linear-gradient(
       to right,
       rgba(10,15,30,0.97) 0%,
-      rgba(10,15,30,0.95) 25%,
-      rgba(10,15,30,0.6) 42%,
+      rgba(10,15,30,0.95) 35%,
+      rgba(10,15,30,0.4) 45%,
       rgba(10,15,30,0.0) 55%
     );
   }
@@ -81,7 +81,7 @@
     flex-direction: column;
     align-items: flex-start;
     text-align: left;
-    max-width: 38%;
+    max-width: 40%;
   }
 
   .hero-email-row {
@@ -531,9 +531,11 @@
   </div>
 </section>
 
-<!-- INTRO -->
-<section id="intro" class="intro-section">
-  <div class="container" style="max-width: 800px; text-align: center;">
+<!-- TARJETAS -->
+<section id="tarjetas" style="padding: 5rem 5%; background: var(--bg); position: relative;">
+
+  <!-- Intro texto -->
+  <div style="max-width: 800px; margin: 0 auto 4rem; text-align: center;">
     <h2>Convierte cada llamada en una <em style="font-style:normal; color:var(--teal);">oportunidad de mejora.</em></h2>
     <p style="color: var(--muted); font-size: 1.1rem; line-height: 1.8; margin-top: 1.25rem;">
       Nuestra IA analiza el 100% de las conversaciones, detecta tendencias, evalúa el cumplimiento de protocolos y genera insights en tiempo real para optimizar la calidad del servicio.
@@ -541,6 +543,175 @@
     <p style="color: var(--text); font-size: 1rem; font-weight: 500; margin-top: 1.25rem; letter-spacing: 0.01em;">
       Menos auditorías manuales. &nbsp;·&nbsp; Más visibilidad. &nbsp;·&nbsp; Mejores resultados.
     </p>
+    <a href="#card-1" class="btn btn-outline" style="margin-top: 2.5rem;">Descubre la plataforma ↓</a>
+  </div>
+
+  <style>
+    .cards-wrap {
+      max-width: 1120px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0;
+    }
+
+    .feature-card {
+      width: 100%;
+      max-width: 1120px;
+      height: 420px;
+      background: #0F1628;
+      border: 1px solid rgba(240,244,255,0.13);
+      border-radius: 20px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      overflow: hidden;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* Glow difuminado alrededor de cada tarjeta */
+    .feature-card::before {
+      content: '';
+      position: absolute;
+      inset: -40px;
+      border-radius: 40px;
+      background: radial-gradient(ellipse at center, rgba(0,87,255,0.10) 0%, transparent 70%);
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    .feature-card:nth-child(3)::before {
+      background: radial-gradient(ellipse at center, rgba(0,229,195,0.08) 0%, transparent 70%);
+    }
+
+    .card-text {
+      padding: 2.5rem 3rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      position: relative;
+      z-index: 1;
+    }
+
+    .card-num {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--teal);
+      margin-bottom: 1rem;
+    }
+
+    .card-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.25rem;
+      font-weight: 700;
+      line-height: 1.25;
+      letter-spacing: -0.02em;
+      color: var(--text);
+      margin-bottom: 1rem;
+    }
+
+    .card-sub {
+      font-size: 0.875rem;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
+    .card-image {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      object-position: center center;
+      display: block;
+      border-radius: 0 20px 20px 0;
+      padding: 1rem;
+    }
+
+    /* Fade izquierdo sobre la imagen para que se integre con el texto */
+    .card-image::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to right, #0F1628 0%, transparent 30%);
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    /* Filamento conector */
+    .filament {
+      width: 2px;
+      height: 40px;
+      background: linear-gradient(to bottom, rgba(0,87,255,0.6), rgba(0,229,195,0.6));
+      border-radius: 2px;
+      flex-shrink: 0;
+    }
+
+    @media (max-width: 768px) {
+      .feature-card {
+        grid-template-columns: 1fr;
+        height: auto;
+      }
+      .card-image {
+        height: 200px;
+      }
+      .card-image img { border-radius: 0 0 20px 20px; }
+      .card-image::before {
+        background: linear-gradient(to bottom, #0F1628 0%, transparent 30%);
+      }
+      .card-text { padding: 2rem; }
+    }
+  </style>
+
+  <div class="cards-wrap">
+
+    <!-- Tarjeta 1 -->
+    <div class="feature-card">
+      <div class="card-text">
+        <div class="card-num">01</div>
+        <div class="card-title">Cada llamada se convierte en una oportunidad de mejora</div>
+        <p class="card-sub">QualioAI analiza automáticamente las conversaciones, evalúa el cumplimiento de protocolos y detecta oportunidades de capacitación para elevar el desempeño de tu equipo.</p>
+      </div>
+      <div class="card-image">
+        <img src="https://wwrmotorszonadeatraccion.b-cdn.net/imagen1%20rectangulo.png" alt="Análisis de llamadas QualioAI">
+      </div>
+    </div>
+
+    <div class="filament"></div>
+
+    <!-- Tarjeta 2 -->
+    <div class="feature-card">
+      <div class="card-text">
+        <div class="card-num">02</div>
+        <div class="card-title">La IA encuentra lo que las auditorías manuales no ven</div>
+        <p class="card-sub">Descubre patrones, riesgos y oportunidades ocultas en miles de conversaciones en cuestión de segundos.</p>
+      </div>
+      <div class="card-image">
+        <img src="https://wwrmotorszonadeatraccion.b-cdn.net/imagen%202%20rectangulo%202.png" alt="Patrones y riesgos QualioAI">
+      </div>
+    </div>
+
+    <div class="filament"></div>
+
+    <!-- Tarjeta 3 -->
+    <div class="feature-card">
+      <div class="card-text">
+        <div class="card-num">03</div>
+        <div class="card-title">Mejor calidad. Mejores agentes. Mejores resultados.</div>
+        <p class="card-sub">Analiza automáticamente cada conversación, identifica oportunidades de mejora y ayuda a tu equipo a ofrecer una experiencia superior en cada interacción.</p>
+      </div>
+      <div class="card-image">
+        <img src="https://wwrmotorszonadeatraccion.b-cdn.net/imagen%203%20rectangulo3.png" alt="Resultados QualioAI">
+      </div>
+    </div>
+
   </div>
 </section>
 
