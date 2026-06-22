@@ -1,10 +1,9 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="utf-8">
+<meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>QualioAI — Análisis de Calidad de Llamadas con IA</title>
-<meta name="description" content="QualioAI analiza y califica automáticamente las interacciones de tu call center para detectar riesgos, oportunidades y tendencias. Prueba gratis 14 días.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500&display=swap" rel="stylesheet">
@@ -35,7 +34,7 @@
     overflow-x: hidden;
   }
 
-  /* HERO (con layout principal, fondo y gradientes) */
+  /* HERO NEW */
   .hero {
     min-height: 100vh;
     position: relative;
@@ -65,9 +64,9 @@
     inset: 0;
     background: linear-gradient(
       to right,
-      rgba(10,15,30,0.92) 0%,
-      rgba(10,15,30,0.75) 50%,
-      rgba(10,15,30,0.2) 100%
+      rgba(10,15,30,0.35) 0%,
+      rgba(10,15,30,0.15) 50%,
+      rgba(10,15,30,0.05) 100%
     );
   }
 
@@ -174,7 +173,35 @@
   }
   .btn-teal:hover { background: #00f5d4; transform: translateY(-1px); }
 
-  /* HERO textual styles */
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: flex; flex-direction: column;
+    justify-content: center; align-items: center;
+    text-align: center;
+    padding: 8rem 5% 5rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    width: 600px; height: 600px;
+    background: radial-gradient(circle, rgba(0,87,255,0.15) 0%, transparent 70%);
+    top: 20%; left: 50%; transform: translateX(-50%);
+    pointer-events: none;
+  }
+
+  .hero::after {
+    content: '';
+    position: absolute;
+    width: 400px; height: 400px;
+    background: radial-gradient(circle, rgba(0,229,195,0.08) 0%, transparent 70%);
+    bottom: 10%; right: 15%;
+    pointer-events: none;
+  }
+
   .badge {
     display: inline-flex; align-items: center; gap: 0.4rem;
     padding: 0.35rem 1rem;
@@ -222,7 +249,7 @@
     line-height: 1.7;
   }
 
-  .hero-cta { display: flex; gap: 1rem; flex-wrap: wrap; justify-content: flex-start; margin-bottom: 1.5rem; }
+  .hero-cta { display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center; margin-bottom: 4rem; }
 
   /* TIMER WIDGET */
   .timer-widget {
@@ -282,7 +309,7 @@
     letter-spacing: 0.02em;
   }
 
-  /* SECTIONS y resto (sin cambios funcionales) */
+  /* SECTIONS */
   section { padding: 6rem 5%; }
 
   .section-label {
@@ -312,8 +339,279 @@
 
   .container { max-width: 1100px; margin: 0 auto; }
 
-  /* ... (restante CSS original sin cambios importantes para ahorrar espacio) ... */
+  /* COMO FUNCIONA */
+  .how-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.5rem;
+    margin-top: 3rem;
+  }
 
+  .how-card {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 2rem;
+    transition: border-color 0.2s;
+  }
+  .how-card:hover { border-color: var(--border-hover); }
+
+  .how-num {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    color: var(--blue);
+    margin-bottom: 1rem;
+  }
+
+  .how-icon {
+    width: 44px; height: 44px;
+    background: var(--blue-dim);
+    border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 1.25rem;
+    font-size: 1.4rem;
+  }
+
+  .how-card h3 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 1.1rem; font-weight: 600;
+    margin-bottom: 0.6rem;
+    letter-spacing: -0.01em;
+  }
+
+  .how-card p { color: var(--muted); font-size: 0.9rem; line-height: 1.65; }
+
+  /* BENEFICIOS */
+  .benefits-section { background: var(--bg2); }
+
+  .benefits-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1.25rem;
+    margin-top: 3rem;
+  }
+
+  .benefit-card {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.5rem;
+    transition: border-color 0.2s, transform 0.2s;
+  }
+  .benefit-card:hover { border-color: rgba(0,229,195,0.3); transform: translateY(-2px); }
+
+  .benefit-icon { font-size: 1.5rem; margin-bottom: 0.75rem; }
+
+  .benefit-card h3 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 1rem; font-weight: 600;
+    margin-bottom: 0.4rem;
+  }
+
+  .benefit-card p { color: var(--muted); font-size: 0.85rem; line-height: 1.6; }
+
+  /* STATS / ROI */
+  .stats-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 1.5rem;
+    margin-top: 3rem;
+  }
+
+  .stat-card {
+    text-align: center;
+    padding: 2rem 1.5rem;
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+  }
+
+  .stat-num {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 2.8rem;
+    font-weight: 700;
+    letter-spacing: -0.04em;
+    color: var(--teal);
+    line-height: 1;
+    margin-bottom: 0.5rem;
+  }
+
+  .stat-desc { color: var(--muted); font-size: 0.875rem; line-height: 1.5; }
+
+  /* CASO DE EXITO */
+  .case-section { background: var(--bg2); }
+
+  .case-card {
+    background: var(--bg);
+    border: 1px solid var(--border-hover);
+    border-radius: 16px;
+    padding: 3rem;
+    margin-top: 3rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    align-items: center;
+  }
+
+  .case-quote {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 1.3rem;
+    font-weight: 500;
+    line-height: 1.5;
+    letter-spacing: -0.01em;
+    color: var(--text);
+    margin-bottom: 1.5rem;
+  }
+
+  .case-quote::before {
+    content: '"';
+    color: var(--teal);
+    font-size: 2rem;
+    line-height: 0;
+    vertical-align: -0.5rem;
+    margin-right: 0.2rem;
+  }
+
+  .case-author { color: var(--muted); font-size: 0.875rem; }
+  .case-author strong { color: var(--text); font-weight: 500; display: block; }
+
+  .case-metrics { display: flex; flex-direction: column; gap: 1rem; }
+
+  .case-metric {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 1.25rem 1.5rem;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+
+  .case-metric-label { color: var(--muted); font-size: 0.875rem; }
+  .case-metric-val {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 700; font-size: 1.3rem;
+    color: var(--teal);
+  }
+
+  /* PRECIOS */
+  .pricing-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+    margin-top: 3rem;
+  }
+
+  .price-card {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 2.5rem;
+    position: relative;
+    transition: border-color 0.2s;
+  }
+  .price-card:hover { border-color: var(--border-hover); }
+
+  .price-card.featured {
+    border-color: var(--blue);
+    background: var(--bg3);
+  }
+
+  .featured-badge {
+    position: absolute; top: -14px; left: 50%; transform: translateX(-50%);
+    background: var(--blue);
+    color: #fff;
+    font-size: 0.75rem; font-weight: 600;
+    padding: 0.25rem 1rem;
+    border-radius: 100px;
+    white-space: nowrap;
+  }
+
+  .price-name {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 1.1rem; font-weight: 600;
+    margin-bottom: 0.5rem;
+  }
+
+  .price-desc { color: var(--muted); font-size: 0.875rem; margin-bottom: 1.5rem; }
+
+  .price-tag {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 0.35rem;
+  }
+
+  .price-amount {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 1.8rem;
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    margin-bottom: 1.5rem;
+    color: var(--text);
+  }
+
+  .price-amount span { font-size: 1rem; font-weight: 400; color: var(--muted); }
+
+  .price-divider { height: 1px; background: var(--border); margin: 1.5rem 0; }
+
+  .price-features { list-style: none; display: flex; flex-direction: column; gap: 0.65rem; }
+
+  .price-features li {
+    display: flex; align-items: flex-start; gap: 0.5rem;
+    font-size: 0.875rem; color: var(--muted);
+  }
+
+  .price-features li::before {
+    content: '✓';
+    color: var(--teal);
+    font-weight: 700;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+
+  .price-cta { margin-top: 2rem; display: block; text-align: center; }
+
+  /* CTA FINAL */
+  .cta-section {
+    text-align: center;
+    padding: 7rem 5%;
+    background: var(--bg2);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .cta-section::before {
+    content: '';
+    position: absolute;
+    width: 500px; height: 500px;
+    background: radial-gradient(circle, rgba(0,87,255,0.1) 0%, transparent 70%);
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+  }
+
+  .cta-section h2 { margin-bottom: 1rem; }
+  .cta-section p { color: var(--muted); margin-bottom: 2.5rem; font-size: 1.05rem; }
+
+  /* FOOTER */
+  footer {
+    padding: 2.5rem 5%;
+    border-top: 1px solid var(--border);
+    display: flex; align-items: center; justify-content: space-between;
+    flex-wrap: wrap; gap: 1rem;
+  }
+
+  footer p { color: var(--muted); font-size: 0.825rem; }
+  footer a { color: var(--muted); text-decoration: none; }
+  footer a:hover { color: var(--text); }
+
+  .footer-links { display: flex; gap: 1.5rem; }
+
+  /* FORM */
   .form-row { display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center; margin-top: 0.5rem; }
 
   .form-input {
@@ -331,15 +629,7 @@
   .form-input:focus { border-color: var(--blue); }
   .form-input::placeholder { color: var(--muted); }
 
-  /* hidden labels para accesibilidad */
-  .sr-only {
-    position: absolute !important;
-    height: 1px; width: 1px;
-    overflow: hidden;
-    clip: rect(1px, 1px, 1px, 1px);
-    white-space: nowrap;
-  }
-
+  /* RESPONSIVE */
   @media (max-width: 768px) {
     nav { padding: 1rem 4%; }
     .nav-links { display: none; }
@@ -357,7 +647,7 @@
 <body>
 
 <!-- NAV -->
-<nav role="navigation" aria-label="Navegación principal">
+<nav>
   <a href="#" class="logo">Qualio<span>AI</span></a>
   <ul class="nav-links">
     <li><a href="#como-funciona">Cómo funciona</a></li>
@@ -370,13 +660,13 @@
 
 <!-- HERO -->
 <section class="hero">
-  <div class="hero-bg" aria-hidden="true">
-    <img src="https://wwrmotorszonadeatraccion.b-cdn.net/Hero%20QualioAI.png" alt="QualioAI — Plataforma de análisis de calidad para call centers" loading="lazy">
+  <div class="hero-bg">
+    <img src="https://wwrmotorszonadeatraccion.b-cdn.net/Hero%20QualioAI.png" alt="QualioAI — Plataforma de análisis de calidad para call centers">
   </div>
 
   <div class="hero-text-col">
     <div class="badge">
-      <span class="badge-dot" aria-hidden="true"></span>
+      <span class="badge-dot"></span>
       Inteligencia Artificial para Call Centers
     </div>
 
@@ -386,35 +676,25 @@
 
     <p style="font-size:0.85rem; color:var(--teal); font-weight:600; margin-bottom:0.75rem; letter-spacing:0.04em;">COMIENZA GRATIS DURANTE 14 DÍAS</p>
 
-    <!-- Form principal: mejor semántica que inputs sueltos -->
-    <form id="lead-form" class="hero-email-row" aria-label="Solicitar demo gratuita">
-      <label for="email" class="sr-only">Correo corporativo</label>
-      <input id="email" name="email" type="email" class="form-input" placeholder="Tu correo corporativo" required>
-
-      <button type="submit" class="btn btn-teal">Pruébalo gratis →</button>
-    </form>
-
-    <p style="margin-top:0.75rem; font-size:0.78rem; color:var(--muted);">Sin tarjeta de crédito · Cancela cuando quieras</p>
-
-    <!-- TIMER WIDGET (agregado para que el script funcione) -->
-    <div class="timer-widget" role="status" aria-label="Ahorro de tiempo por llamada">
-      <div class="timer-saving">Ahorro por llamada</div>
-
-      <div class="timer-block">
-        <div class="timer-label">Analista</div>
-        <div id="human-timer" class="timer-value old">0</div>
-        <div class="timer-unit">min</div>
-      </div>
-
-      <div class="timer-arrow" aria-hidden="true">→</div>
-
-      <div class="timer-block">
-        <div class="timer-label">QualioAI</div>
-        <div id="ai-timer" class="timer-value new">0</div>
-        <div class="timer-unit">min</div>
-      </div>
+    <div class="hero-email-row">
+      <input type="email" class="form-input" placeholder="Tu correo corporativo">
+      <a href="#demo" class="btn btn-teal">Pruébalo gratis →</a>
     </div>
 
+    <p style="margin-top:0.75rem; font-size:0.78rem; color:var(--muted);">Sin tarjeta de crédito · Cancela cuando quieras</p>
+  </div>
+</section>
+
+<!-- INTRO SECTION -->
+<section id="intro" style="padding: 5rem 5%; background: var(--bg2);">
+  <div class="container" style="max-width: 800px; text-align: center;">
+    <h2>Convierte cada llamada en una <em style="font-style:normal; color:var(--teal);">oportunidad de mejora.</em></h2>
+    <p style="color: var(--muted); font-size: 1.1rem; line-height: 1.8; margin-top: 1.25rem;">
+      Nuestra IA analiza el 100% de las conversaciones, detecta tendencias, evalúa el cumplimiento de protocolos y genera insights en tiempo real para optimizar la calidad del servicio.
+    </p>
+    <p style="color: var(--text); font-size: 1rem; font-weight: 500; margin-top: 1.25rem; letter-spacing: 0.01em;">
+      Menos auditorías manuales. &nbsp;·&nbsp; Más visibilidad. &nbsp;·&nbsp; Mejores resultados.
+    </p>
   </div>
 </section>
 
@@ -450,7 +730,196 @@
   </div>
 </section>
 
-<!-- (resto del HTML permanece igual que tu original: beneficios, stats, caso de éxito, precios, CTA y footer) -->
+<!-- BENEFICIOS -->
+<section id="beneficios" class="benefits-section">
+  <div class="container">
+    <div class="section-label">Ventajas</div>
+    <h2>Por qué QualioAI<br>cambia las reglas</h2>
+    <p class="section-sub">Diseñado para el ritmo real de los call centers en Colombia y Latinoamérica.</p>
+
+    <div class="benefits-grid">
+      <div class="benefit-card">
+        <div class="benefit-icon">⚡</div>
+        <h3>Velocidad 13x</h3>
+        <p>Lo que toma 40 minutos a un analista, QualioAI lo completa en 3. Más volumen, mismo equipo.</p>
+      </div>
+
+      <div class="benefit-card">
+        <div class="benefit-icon">🎯</div>
+        <h3>Criterio uniforme</h3>
+        <p>Elimina la subjetividad humana. Cada llamada se evalúa con exactamente el mismo estándar de calidad.</p>
+      </div>
+
+      <div class="benefit-card">
+        <div class="benefit-icon">📈</div>
+        <h3>Cobertura 100%</h3>
+        <p>Analiza todas las llamadas, no solo muestras. Cumple la normativa de calidad sin ampliar tu planta.</p>
+      </div>
+
+      <div class="benefit-card">
+        <div class="benefit-icon">🔍</div>
+        <h3>Retroalimentación inmediata</h3>
+        <p>Los agentes reciben hallazgos el mismo día, no semanas después. La mejora es continua y acelerada.</p>
+      </div>
+
+      <div class="benefit-card">
+        <div class="benefit-icon">🛡️</div>
+        <h3>Cumplimiento normativo</h3>
+        <p>Trazabilidad completa de cada evaluación para auditorías regulatorias y entes de control.</p>
+      </div>
+
+      <div class="benefit-card">
+        <div class="benefit-icon">💰</div>
+        <h3>ROI inmediato</h3>
+        <p>Reduce el costo por evaluación hasta en un 80%. El retorno de inversión se alcanza en el primer mes.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<section>
+  <div class="container">
+    <div class="section-label">Impacto</div>
+    <h2>Números que hablan por sí solos</h2>
+
+    <div class="stats-row">
+      <div class="stat-card">
+        <div class="stat-num">13x</div>
+        <div class="stat-desc">más rápido que un analista humano</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">100%</div>
+        <div class="stat-desc">de las llamadas analizadas, sin muestreo</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">–80%</div>
+        <div class="stat-desc">reducción en costo operativo de calidad</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">&lt;24h</div>
+        <div class="stat-desc">para retroalimentar a cada agente</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CASO DE EXITO -->
+<section id="caso-exito" class="case-section">
+  <div class="container">
+    <div class="section-label">Caso de éxito</div>
+    <h2>Resultados reales,<br>en una empresa real</h2>
+
+    <div class="case-card">
+      <div>
+        <p class="case-quote">
+          Antes tardábamos toda la semana analizando llamadas. Con QualioAI cerramos la semana con el 100% evaluado y el equipo de calidad enfocado en coaching, no en escuchar grabaciones.
+        </p>
+        <div class="case-author">
+          <strong>Directora de Calidad</strong>
+          Empresa de servicios — Call center de 120 agentes, Colombia
+        </div>
+      </div>
+
+      <div class="case-metrics">
+        <div class="case-metric">
+          <span class="case-metric-label">Tiempo de análisis por llamada</span>
+          <span class="case-metric-val">40 min → 3 min</span>
+        </div>
+        <div class="case-metric">
+          <span class="case-metric-label">Cobertura de evaluaciones</span>
+          <span class="case-metric-val">18% → 100%</span>
+        </div>
+        <div class="case-metric">
+          <span class="case-metric-label">Costo operativo de calidad</span>
+          <span class="case-metric-val">–76%</span>
+        </div>
+        <div class="case-metric">
+          <span class="case-metric-label">Satisfacción del cliente final</span>
+          <span class="case-metric-val">+22 pts NPS</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRECIOS -->
+<section id="precios">
+  <div class="container">
+    <div class="section-label">Inversión</div>
+    <h2>Planes diseñados para crecer contigo</h2>
+    <p class="section-sub">Pago único de implementación más mensualidad según el tamaño de tu operación. Sin sorpresas.</p>
+
+    <div class="pricing-grid">
+      <div class="price-card">
+        <div class="price-name">Starter</div>
+        <div class="price-desc">Ideal para call centers en crecimiento, hasta 30 agentes.</div>
+
+        <div class="price-tag">Implementación</div>
+        <div class="price-amount">$X.XXX.XXX <span>pago único</span></div>
+
+        <div class="price-divider"></div>
+        <div class="price-tag">Mensualidad</div>
+        <div class="price-amount">$XXX.XXX <span>/mes</span></div>
+
+        <ul class="price-features">
+          <li>Hasta 30 agentes</li>
+          <li>Análisis ilimitado de llamadas</li>
+          <li>Reportes semanales automáticos</li>
+          <li>Soporte por correo y WhatsApp</li>
+          <li>Integración con 1 plataforma de telefonía</li>
+        </ul>
+
+        <a href="#demo" class="btn btn-outline price-cta">Solicitar cotización</a>
+      </div>
+
+      <div class="price-card featured">
+        <div class="featured-badge">Más solicitado</div>
+        <div class="price-name">Business</div>
+        <div class="price-desc">Para operaciones medianas y grandes, de 31 a 150 agentes.</div>
+
+        <div class="price-tag">Implementación</div>
+        <div class="price-amount">$XX.XXX.XXX <span>pago único</span></div>
+
+        <div class="price-divider"></div>
+        <div class="price-tag">Mensualidad</div>
+        <div class="price-amount">$X.XXX.XXX <span>/mes</span></div>
+
+        <ul class="price-features">
+          <li>Hasta 150 agentes</li>
+          <li>Análisis ilimitado de llamadas</li>
+          <li>Dashboard en tiempo real</li>
+          <li>Soporte prioritario 24/7</li>
+          <li>Integraciones múltiples</li>
+          <li>Módulo de coaching de agentes</li>
+        </ul>
+
+        <a href="#demo" class="btn btn-primary price-cta">Solicitar cotización</a>
+      </div>
+
+      <div class="price-card">
+        <div class="price-name">Enterprise</div>
+        <div class="price-desc">Soluciones a medida para grandes contact centers y BPOs.</div>
+
+        <div class="price-tag">Precio</div>
+        <div class="price-amount">A la medida</div>
+
+        <div class="price-divider"></div>
+
+        <ul class="price-features">
+          <li>Agentes ilimitados</li>
+          <li>Implementación personalizada</li>
+          <li>SLA garantizado</li>
+          <li>Gerente de cuenta dedicado</li>
+          <li>Integración con sistemas propios</li>
+          <li>Capacitación del equipo incluida</li>
+        </ul>
+
+        <a href="#demo" class="btn btn-outline price-cta">Hablemos</a>
+      </div>
+    </div>
+  </div>
+</section>
 
 <!-- CTA FINAL -->
 <section id="demo" class="cta-section">
@@ -459,18 +928,12 @@
     <h2>¿Listo para transformar<br>tu área de calidad?</h2>
     <p>Agenda una demo de 30 minutos y ve QualioAI en acción con tus propias llamadas.</p>
 
-    <form class="form-row" id="demo-form">
-      <label for="name" class="sr-only">Nombre</label>
-      <input id="name" class="form-input" placeholder="Tu nombre">
-
-      <label for="company" class="sr-only">Empresa y cargo</label>
-      <input id="company" class="form-input" placeholder="Empresa y cargo">
-
-      <label for="phone" class="sr-only">WhatsApp o teléfono</label>
-      <input id="phone" class="form-input" placeholder="WhatsApp o teléfono">
-
-      <a id="wa-link" href="https://wa.me/57XXXXXXXXXX?text=Hola,%20quiero%20una%20demo%20de%20QualioAI" target="_blank" class="btn btn-teal">Agendar demo →</a>
-    </form>
+    <div class="form-row">
+      <input type="text" class="form-input" placeholder="Tu nombre">
+      <input type="text" class="form-input" placeholder="Empresa y cargo">
+      <input type="tel" class="form-input" placeholder="WhatsApp o teléfono">
+      <a href="https://wa.me/57XXXXXXXXXX?text=Hola,%20quiero%20una%20demo%20de%20QualioAI" target="_blank" class="btn btn-teal">Agendar demo →</a>
+    </div>
 
     <p style="margin-top: 1.25rem; font-size: 0.8rem; color: var(--muted);">Sin compromiso · Respuesta en menos de 24 horas · Demo personalizada con tus datos</p>
   </div>
@@ -504,7 +967,6 @@
   function animateTimer() {
     const humanEl = document.getElementById('human-timer');
     const aiEl = document.getElementById('ai-timer');
-    if (!humanEl || !aiEl) return;
     let h = 0, a = 0;
     const dur = 1200;
     const start = performance.now();
@@ -519,7 +981,7 @@
     requestAnimationFrame(step);
   }
 
-  /* Nav active on scroll (ligero y efectivo) */
+  /* Nav active on scroll */
   const sections = document.querySelectorAll('section[id]');
   const navLinks = document.querySelectorAll('.nav-links a');
 
@@ -532,24 +994,6 @@
       a.style.color = a.getAttribute('href') === '#' + current ? '#F0F4FF' : '';
     });
   });
-
-  /* Form submit handling (validación mínima) */
-  const leadForm = document.getElementById('lead-form');
-  if (leadForm) {
-    leadForm.addEventListener('submit', (e) => {
-      e.preventDefault();
-      const email = leadForm.querySelector('input[name="email"]').value;
-      if (!email || !/^\S+@\S+\.\S+$/.test(email)) {
-        alert('Por favor ingresa un correo válido.');
-        return;
-      }
-      // Aquí puedes enviar a tu backend via fetch() o redirigir:
-      // fetch('/api/leads', { method: 'POST', body: JSON.stringify({email}) })
-      //   .then(...)
-      // Por ahora redirigimos a la sección demo.
-      location.hash = '#demo';
-    });
-  }
 </script>
 </body>
 </html>
