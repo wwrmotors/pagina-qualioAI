@@ -827,15 +827,35 @@
         overflow: hidden;
         background: var(--bg3);
         min-height: 420px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      /* Destello de luz detrás de la imagen */
+      .step-image-col::after {
+        content: '';
+        position: absolute;
+        width: 70%; height: 70%;
+        border-radius: 50%;
+        background: radial-gradient(circle, rgba(0,87,255,0.18) 0%, rgba(0,229,195,0.08) 50%, transparent 70%);
+        top: 50%; left: 50%;
+        transform: translate(-50%, -50%);
+        pointer-events: none;
+        z-index: 0;
       }
 
       .step-image-col img {
-        width: 100%;
-        height: 100%;
+        width: 88%;
+        height: 88%;
         object-fit: contain;
         object-position: center;
         display: block;
-        padding: 2rem;
+        padding: 0;
+        border-radius: 16px;
+        position: relative;
+        z-index: 1;
+        box-shadow: 0 8px 32px rgba(0,0,0,0.35);
       }
 
       /* Fade lateral para integrar imagen con contenido */
