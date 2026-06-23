@@ -716,32 +716,233 @@
 </section>
 
 <!-- COMO FUNCIONA -->
-<section id="como-funciona">
+<section id="como-funciona" style="padding: 6rem 5%; background: var(--bg2);">
   <div class="container">
     <div class="section-label">Proceso</div>
-    <h2>Así funciona QualioAI</h2>
-    <p class="section-sub">En tres pasos simples, el software reemplaza el proceso manual de calidad que consume horas de tu equipo cada día.</p>
+    <h2>3 pasos para transformar<br>tu área de calidad</h2>
+    <p class="section-sub">Sin cargas manuales, sin interrupciones. QualioAI trabaja en segundo plano para que tu equipo se enfoque en lo que importa.</p>
 
-    <div class="how-grid">
-      <div class="how-card">
-        <div class="how-num">PASO 01</div>
-        <div class="how-icon">🎙️</div>
-        <h3>Ingesta de llamadas</h3>
-        <p>QualioAI recibe automáticamente las grabaciones de tus agentes desde tu plataforma de telefonía, sin intervención manual.</p>
+    <style>
+      .steps-wrap {
+        margin-top: 4rem;
+        display: flex;
+        flex-direction: column;
+        gap: 0;
+      }
+
+      .step-row {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 0;
+        align-items: stretch;
+        position: relative;
+      }
+
+      .step-row.reverse { direction: rtl; }
+      .step-row.reverse > * { direction: ltr; }
+
+      .step-content {
+        padding: 3.5rem 4rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        background: var(--bg2);
+        position: relative;
+      }
+
+      .step-row:not(:last-child) .step-content::after {
+        content: '';
+        position: absolute;
+        bottom: 0; left: 4rem;
+        width: 2px; height: 3rem;
+        background: linear-gradient(to bottom, rgba(0,87,255,0.6), rgba(0,229,195,0.5));
+        transform: translateY(100%);
+        z-index: 2;
+      }
+
+      .step-row.reverse .step-content::after {
+        left: auto; right: 4rem;
+      }
+
+      .step-badge {
+        display: inline-flex; align-items: center; gap: 0.5rem;
+        font-family: 'Space Grotesk', sans-serif;
+        font-size: 0.72rem; font-weight: 700;
+        letter-spacing: 0.12em; text-transform: uppercase;
+        color: var(--teal);
+        margin-bottom: 1.25rem;
+      }
+
+      .step-badge-num {
+        width: 24px; height: 24px;
+        background: var(--teal);
+        color: #0A0F1E;
+        border-radius: 50%;
+        display: flex; align-items: center; justify-content: center;
+        font-size: 0.7rem; font-weight: 800;
+        flex-shrink: 0;
+      }
+
+      .step-title {
+        font-family: 'Space Grotesk', sans-serif;
+        font-size: 1.4rem; font-weight: 700;
+        line-height: 1.2; letter-spacing: -0.02em;
+        color: var(--text);
+        margin-bottom: 1.25rem;
+      }
+
+      .step-body {
+        display: flex; flex-direction: column; gap: 0.75rem;
+      }
+
+      .step-body p {
+        font-size: 0.9rem;
+        color: var(--muted);
+        line-height: 1.75;
+      }
+
+      .step-highlight {
+        display: flex; align-items: flex-start; gap: 0.6rem;
+        font-size: 0.875rem;
+        color: var(--text);
+        font-weight: 500;
+        margin-top: 0.5rem;
+        padding: 0.75rem 1rem;
+        background: var(--blue-dim);
+        border: 1px solid rgba(0,87,255,0.2);
+        border-radius: 8px;
+        line-height: 1.5;
+      }
+
+      .step-highlight::before {
+        content: '✦';
+        color: var(--teal);
+        font-size: 0.7rem;
+        flex-shrink: 0;
+        margin-top: 2px;
+      }
+
+      .step-image-col {
+        position: relative;
+        overflow: hidden;
+        background: var(--bg3);
+        min-height: 420px;
+      }
+
+      .step-image-col img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        object-position: center;
+        display: block;
+        padding: 2rem;
+      }
+
+      /* Fade lateral para integrar imagen con contenido */
+      .step-row:not(.reverse) .step-image-col::before {
+        content: '';
+        position: absolute; inset: 0;
+        background: linear-gradient(to right, var(--bg2) 0%, transparent 20%);
+        z-index: 1; pointer-events: none;
+      }
+
+      .step-row.reverse .step-image-col::before {
+        content: '';
+        position: absolute; inset: 0;
+        background: linear-gradient(to left, var(--bg2) 0%, transparent 20%);
+        z-index: 1; pointer-events: none;
+      }
+
+      /* Separador entre pasos */
+      .step-divider {
+        height: 3rem;
+        display: flex; align-items: center; justify-content: flex-start;
+        padding-left: calc(4rem + 1px);
+        position: relative;
+      }
+
+      .step-divider.right {
+        justify-content: flex-end;
+        padding-left: 0;
+        padding-right: calc(4rem + 1px);
+      }
+
+      @media (max-width: 768px) {
+        .step-row, .step-row.reverse {
+          grid-template-columns: 1fr;
+          direction: ltr;
+        }
+        .step-image-col { min-height: 260px; order: -1; }
+        .step-content { padding: 2rem; }
+        .step-row .step-content::after { display: none; }
+        .step-divider { padding-left: 2rem; }
+        .step-row:not(.reverse) .step-image-col::before,
+        .step-row.reverse .step-image-col::before {
+          background: linear-gradient(to bottom, var(--bg2) 0%, transparent 25%);
+        }
+      }
+    </style>
+
+    <div class="steps-wrap">
+
+      <!-- PASO 1 -->
+      <div class="step-row">
+        <div class="step-content">
+          <div class="step-badge"><span class="step-badge-num">1</span> Ingesta automática</div>
+          <div class="step-title">Recibe cada llamada sin levantar un dedo</div>
+          <div class="step-body">
+            <p>QualioAI recibe automáticamente las grabaciones de llamadas desde tu plataforma de telefonía, CRM o Contact Center.</p>
+            <p>Las conversaciones son centralizadas de forma segura y organizadas para su procesamiento, eliminando cargas manuales y asegurando que cada interacción esté disponible para análisis.</p>
+            <div class="step-highlight">Sin cargas de archivos, sin procesos manuales y sin interrupciones en tu operación.</div>
+          </div>
+        </div>
+        <div class="step-image-col">
+          <img src="https://wwrmotorszonadeatraccion.b-cdn.net/paso1.png" alt="Ingesta automática de llamadas">
+        </div>
       </div>
-      <div class="how-card">
-        <div class="how-num">PASO 02</div>
-        <div class="how-icon" style="background: var(--teal-dim);">🧠</div>
-        <h3>Análisis con IA</h3>
-        <p>Nuestra IA transcribe, analiza el tono, cumplimiento del guion, manejo de objeciones y adherencia a protocolos de calidad.</p>
+
+      <div class="step-divider"></div>
+
+      <!-- PASO 2 -->
+      <div class="step-row reverse">
+        <div class="step-content">
+          <div class="step-badge"><span class="step-badge-num">2</span> Análisis con IA</div>
+          <div class="step-title">La IA analiza cada conversación en segundos</div>
+          <div class="step-body">
+            <p>Una vez recibida la llamada, QualioAI transcribe automáticamente la conversación y analiza cada interacción utilizando inteligencia artificial avanzada.</p>
+            <p>La plataforma evalúa el cumplimiento de protocolos, el tono del agente, la empatía, el manejo de objeciones, la resolución de solicitudes y otros indicadores clave de calidad.</p>
+            <div class="step-highlight">En segundos, cada llamada se transforma en métricas, hallazgos y oportunidades de mejora listas para ser accionadas.</div>
+          </div>
+        </div>
+        <div class="step-image-col">
+          <img src="https://wwrmotorszonadeatraccion.b-cdn.net/paso2.png" alt="Análisis IA de llamadas">
+        </div>
       </div>
-      <div class="how-card">
-        <div class="how-num">PASO 03</div>
-        <div class="how-icon">📊</div>
-        <h3>Reporte y calificación</h3>
-        <p>En menos de 3 minutos obtienes un informe completo con puntaje, hallazgos y recomendaciones listas para retroalimentar al agente.</p>
+
+      <div class="step-divider right"></div>
+
+      <!-- PASO 3 -->
+      <div class="step-row">
+        <div class="step-content">
+          <div class="step-badge"><span class="step-badge-num">3</span> Reporte y calificación</div>
+          <div class="step-title">Información accionable lista para tu equipo</div>
+          <div class="step-body">
+            <p>QualioAI entrega puntuaciones, hallazgos y recomendaciones listas para retroalimentar a los agentes, acelerar los procesos de calidad y tomar decisiones basadas en datos.</p>
+            <div class="step-highlight">Transforma cada llamada en una oportunidad de mejora concreta y medible.</div>
+          </div>
+        </div>
+        <div class="step-image-col">
+          <img src="https://wwrmotorszonadeatraccion.b-cdn.net/paso3.png" alt="Reportes y calificación QualioAI">
+        </div>
       </div>
+
     </div>
+
+    <!-- VIDEO PLACEHOLDER -->
+    <div id="video-qualioai" style="margin-top: 5rem; border-radius: 16px; overflow: hidden; border: 1px solid var(--border-hover); background: var(--bg3); min-height: 480px; display: flex; align-items: center; justify-content: center;">
+      <p style="color: var(--muted); font-size: 0.9rem;">— Video interactivo de Higsfield aquí —</p>
+    </div>
+
   </div>
 </section>
 
