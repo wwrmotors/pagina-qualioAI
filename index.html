@@ -1187,19 +1187,521 @@
   </div>
 </section>
 
-<!-- STATS -->
-<section>
+<!-- STATS / COMPARATIVO -->
+<section style="padding: 6rem 5%; background: var(--bg);">
   <div class="container">
     <div class="section-label">Impacto</div>
     <h2>Números que hablan por sí solos</h2>
+    <p class="section-sub" style="margin-bottom: 3rem;">La diferencia entre un proceso manual y QualioAI, en tiempo real.</p>
+
+    <style>
+      .compare-wrap {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1.5rem;
+        margin-bottom: 3rem;
+      }
+
+      .chrono-card {
+        border-radius: 20px;
+        padding: 2.5rem 2rem;
+        display: flex; flex-direction: column;
+        align-items: center; text-align: center;
+        position: relative; overflow: hidden;
+      }
+
+      .chrono-card.manual {
+        background: var(--bg2);
+        border: 1px solid rgba(255,107,107,0.2);
+      }
+
+      .chrono-card.qualio {
+        background: var(--bg2);
+        border: 1px solid rgba(0,229,195,0.25);
+      }
+
+      .chrono-card::before {
+        content: '';
+        position: absolute; inset: 0;
+        pointer-events: none;
+        border-radius: 20px;
+      }
+
+      .chrono-card.manual::before {
+        background: radial-gradient(ellipse at 50% 0%, rgba(255,107,107,0.08) 0%, transparent 65%);
+      }
+
+      .chrono-card.qualio::before {
+        background: radial-gradient(ellipse at 50% 0%, rgba(0,229,195,0.10) 0%, transparent 65%);
+      }
+
+      .chrono-label {
+        font-family: 'Space Grotesk', sans-serif;
+        font-size: 0.72rem; font-weight: 700;
+        letter-spacing: 0.12em; text-transform: uppercase;
+        margin-bottom: 1.5rem;
+        padding: 0.3rem 1rem;
+        border-radius: 100px;
+      }
+
+      .chrono-card.manual .chrono-label {
+        color: #FF6B6B;
+        background: rgba(255,107,107,0.1);
+        border: 1px solid rgba(255,107,107,0.2);
+      }
+
+      .chrono-card.qualio .chrono-label {
+        color: var(--teal);
+        background: var(--teal-dim);
+        border: 1px solid rgba(0,229,195,0.25);
+      }
+
+      /* Display cronómetro */
+      .chrono-display {
+        font-family: 'Space Grotesk', monospace;
+        font-size: clamp(2.8rem, 5vw, 4.5rem);
+        font-weight: 700;
+        letter-spacing: 0.05em;
+        line-height: 1;
+        margin-bottom: 0.5rem;
+        font-variant-numeric: tabular-nums;
+        -webkit-font-feature-settings: "tnum";
+        font-feature-settings: "tnum";
+      }
+
+      .chrono-card.manual .chrono-display { color: #FF6B6B; }
+      .chrono-card.qualio .chrono-display { color: var(--teal); }
+
+      .chrono-unit-row {
+        display: flex; gap: 1rem;
+        font-size: 0.7rem; font-weight: 600;
+        letter-spacing: 0.1em; text-transform: uppercase;
+        color: var(--muted);
+        margin-bottom: 1.75rem;
+      }
+
+      .chrono-unit-row span { flex: 1; text-align: center; }
+
+      .chrono-title {
+        font-family: 'Space Grotesk', sans-serif;
+        font-size: 1rem; font-weight: 600;
+        color: var(--text); margin-bottom: 0.35rem;
+      }
+
+      .chrono-sub {
+        font-size: 0.825rem; color: var(--muted); line-height: 1.5;
+      }
+
+      /* Botón de control */
+      .compare-ctrl {
+        display: flex; justify-content: center; gap: 1rem;
+        margin-bottom: 3rem;
+      }
+
+      /* Stats fila debajo */
+      .stats-row {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+        gap: 1.5rem;
+      }
+
+      .stat-card {
+        text-align: center; padding: 2rem 1.5rem;
+        background: var(--bg2); border: 1px solid var(--border); border-radius: 14px;
+        transition: border-color 0.2s, transform 0.2s;
+      }
+      .stat-card:hover { border-color: rgba(0,229,195,0.3); transform: translateY(-2px); }
+
+      .stat-num {
+        font-family: 'Space Grotesk', sans-serif;
+        font-size: 2.8rem; font-weight: 700;
+        letter-spacing: -0.04em; color: var(--teal);
+        line-height: 1; margin-bottom: 0.5rem;
+      }
+
+      .stat-desc { color: var(--muted); font-size: 0.875rem; line-height: 1.5; }
+
+      @media (max-width: 640px) {
+        .compare-wrap { grid-template-columns: 1fr; }
+        .chrono-display { font-size: 3rem; }
+      }
+    </style>
+
+    <!-- Cronómetros -->
+    <div class="compare-wrap">
+
+      <!-- Manual -->
+      <div class="chrono-card manual">
+        <div class="chrono-label">1 Agente de Análisis</div>
+        <div class="chrono-display" id="manual-display">40:00:00</div>
+        <div class="chrono-unit-row">
+          <span>min</span><span>seg</span><span>ms</span>
+        </div>
+        <div class="chrono-title">Análisis manual de una llamada</div>
+        <div class="chrono-sub">Escuchar, transcribir, evaluar y calificar una sola grabación de 30 min.</div>
+      </div>
+
+      <!-- QualioAI -->
+      <div class="chrono-card qualio">
+        <div class="chrono-label">Con QualioAI</div>
+        <div class="chrono-display" id="qualio-display">03:00:00</div>
+        <div class="chrono-unit-row">
+          <span>min</span><span>seg</span><span>ms</span>
+        </div>
+        <div class="chrono-title">Análisis automático con IA</div>
+        <div class="chrono-sub">Transcripción, análisis completo, puntuación y reporte listos en segundos.</div>
+      </div>
+
+    </div>
+
+    <!-- Controles -->
+    <div class="compare-ctrl">
+      <button id="chrono-btn" class="btn btn-teal" onclick="toggleChrono()">▶ Iniciar comparativo</button>
+      <button class="btn btn-outline" onclick="resetChrono()">↺ Reiniciar</button>
+    </div>
+
+    <!-- Stats -->
     <div class="stats-row">
       <div class="stat-card"><div class="stat-num">13x</div><div class="stat-desc">más rápido que un analista humano</div></div>
       <div class="stat-card"><div class="stat-num">100%</div><div class="stat-desc">de las llamadas analizadas, sin muestreo</div></div>
       <div class="stat-card"><div class="stat-num">–80%</div><div class="stat-desc">reducción en costo operativo de calidad</div></div>
       <div class="stat-card"><div class="stat-num">&lt;24h</div><div class="stat-desc">para retroalimentar a cada agente</div></div>
     </div>
+
   </div>
 </section>
+
+<script>
+  // Cronómetros comparativos
+  let chronoRunning = false;
+  let chronoRAF = null;
+  let chronoStart = null;
+
+  const DURATION_REAL = 8000; // 8 segundos reales de animación
+  const MANUAL_TOTAL  = 40 * 60 * 1000; // 40 min en ms
+  const QUALIO_TOTAL  = 3  * 60 * 1000; // 3 min en ms
+  // Manual termina en 36 min → recorre 4 min en 8s
+  const MANUAL_END    = 36 * 60 * 1000;
+  const MANUAL_RANGE  = MANUAL_TOTAL - MANUAL_END; // 4 min recorridos
+
+  function pad(n, d) { return String(Math.floor(Math.abs(n))).padStart(d, '0'); }
+
+  function msToDisplay(ms) {
+    if (ms < 0) ms = 0;
+    const min   = Math.floor(ms / 60000);
+    const sec   = Math.floor((ms % 60000) / 1000);
+    const milli = Math.floor((ms % 1000) / 10);
+    return `${pad(min,2)}:${pad(sec,2)}:${pad(milli,2)}`;
+  }
+
+  function toggleChrono() {
+    chronoRunning ? pauseChrono() : startChrono();
+  }
+
+  function startChrono() {
+    if (chronoRunning) return;
+    chronoRunning = true;
+    document.getElementById('chrono-btn').textContent = '⏸ Pausar';
+
+    const startTime = performance.now() - (chronoStart || 0);
+
+    function frame(ts) {
+      if (!chronoRunning) return;
+      const elapsed  = Math.min(ts - startTime, DURATION_REAL);
+      const progress = elapsed / DURATION_REAL; // 0 → 1
+
+      // Manual: de 40:00 baja solo 4 minutos → queda en 36:00
+      // Los milisegundos van rápido, los minutos apenas se mueven
+      const manualMs = MANUAL_TOTAL - (MANUAL_RANGE * progress);
+
+      // QualioAI: de 3:00 baja a 0, milisegundos volando
+      const qualioMs = QUALIO_TOTAL * (1 - progress);
+
+      document.getElementById('manual-display').textContent = msToDisplay(manualMs);
+      document.getElementById('qualio-display').textContent = msToDisplay(qualioMs);
+
+      if (elapsed < DURATION_REAL) {
+        chronoRAF = requestAnimationFrame(frame);
+        chronoStart = elapsed;
+      } else {
+        // Fijar valores finales
+        document.getElementById('manual-display').textContent = '36:00:00';
+        document.getElementById('qualio-display').textContent = '00:00:00';
+        chronoRunning = false;
+        chronoStart = null;
+        document.getElementById('chrono-btn').textContent = '▶ Iniciar comparativo';
+
+        // Flash en QualioAI
+        const qCard = document.querySelector('.chrono-card.qualio');
+        qCard.style.boxShadow = '0 0 60px rgba(0,229,195,0.5)';
+        setTimeout(() => { qCard.style.boxShadow = ''; }, 1200);
+
+        // 🎉 CONFETI + DESTELLOS
+        launchCelebration();
+      }
+    }
+
+    chronoRAF = requestAnimationFrame(frame);
+  }
+
+  function pauseChrono() {
+    chronoRunning = false;
+    if (chronoRAF) cancelAnimationFrame(chronoRAF);
+    document.getElementById('chrono-btn').textContent = '▶ Continuar';
+  }
+
+  function resetChrono() {
+    chronoRunning = false;
+    if (chronoRAF) cancelAnimationFrame(chronoRAF);
+    chronoStart = null;
+    document.getElementById('manual-display').textContent = '40:00:00';
+    document.getElementById('qualio-display').textContent = '03:00:00';
+    document.getElementById('chrono-btn').textContent = '▶ Iniciar comparativo';
+    document.querySelector('.chrono-card.qualio').style.boxShadow = '';
+    // Limpiar canvas si existe
+    const c = document.getElementById('confetti-canvas');
+    if (c) c.remove();
+  }
+
+  /* ===================== CONFETI + DESTELLOS ===================== */
+  function launchCelebration() {
+    const canvas = document.createElement('canvas');
+    canvas.id = 'confetti-canvas';
+    canvas.style.cssText = `
+      position: fixed; inset: 0; z-index: 9999;
+      pointer-events: none; width: 100%; height: 100%;
+    `;
+    document.body.appendChild(canvas);
+    const ctx = canvas.getContext('2d');
+    canvas.width  = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    const cx = canvas.width  / 2;
+    const cy = canvas.height / 2;
+
+    const colors = [
+      '#00E5C3', '#0057FF', '#7EB3FF', '#FFD700',
+      '#FF6B6B', '#ffffff', '#00f5d4', '#A78BFA',
+      '#F472B6', '#34D399', '#60A5FA', '#FBBF24'
+    ];
+
+    // Tipos de figura
+    const SHAPES = ['rect', 'circle', 'star', 'triangle', 'ring', 'heart'];
+
+    function randColor() { return colors[Math.floor(Math.random() * colors.length)]; }
+    function randShape() { return SHAPES[Math.floor(Math.random() * SHAPES.length)]; }
+
+    // --- PARTÍCULAS DE CONFETI ---
+    const N = 320;
+    const particles = Array.from({ length: N }, (_, i) => {
+      const angle  = (Math.random() * Math.PI * 2);
+      const speed  = 4 + Math.random() * 18;
+      return {
+        x: cx, y: cy,
+        vx: Math.cos(angle) * speed,
+        vy: Math.sin(angle) * speed - (Math.random() * 6), // leve impulso hacia arriba
+        size: 5 + Math.random() * 10,
+        color: randColor(),
+        shape: randShape(),
+        angle: Math.random() * Math.PI * 2,
+        spin:  (Math.random() - 0.5) * 0.18,
+        opacity: 1,
+        gravity: 0.12 + Math.random() * 0.1,
+        drag: 0.985,
+      };
+    });
+
+    // --- ESTRELLAS BRILLANTES (fijas + parpadeantes) ---
+    const STAR_N = 90;
+    const stars = Array.from({ length: STAR_N }, () => ({
+      x: Math.random() * canvas.width,
+      y: Math.random() * canvas.height,
+      r: 0.5 + Math.random() * 3.5,
+      color: colors[Math.floor(Math.random() * colors.length)],
+      phase: Math.random() * Math.PI * 2,
+      speed: 0.03 + Math.random() * 0.07,
+      spikes: Math.random() > 0.5 ? 4 : 6,
+    }));
+
+    // --- DESTELLOS DE EXPLOSIÓN (rayos desde el centro) ---
+    const RAYS = 24;
+    const rays = Array.from({ length: RAYS }, (_, i) => ({
+      angle: (i / RAYS) * Math.PI * 2,
+      len: 0,
+      maxLen: 80 + Math.random() * 180,
+      color: colors[Math.floor(Math.random() * colors.length)],
+      width: 0.5 + Math.random() * 1.5,
+      speed: 18 + Math.random() * 12,
+      opacity: 1,
+    }));
+
+    const TOTAL    = 5500; // duración total ms
+    const SLOWDOWN = 0.55; // a partir del 55% empieza la cámara lenta
+    let start = null;
+
+    // Dibujar estrella de N puntas
+    function drawStar(ctx, x, y, r, spikes, color, alpha) {
+      ctx.save();
+      ctx.globalAlpha = alpha;
+      ctx.fillStyle = color;
+      ctx.shadowColor = color;
+      ctx.shadowBlur = r * 4;
+      ctx.beginPath();
+      for (let i = 0; i < spikes * 2; i++) {
+        const a  = (i * Math.PI) / spikes - Math.PI / 2;
+        const ri = i % 2 === 0 ? r : r * 0.4;
+        i === 0
+          ? ctx.moveTo(x + ri * Math.cos(a), y + ri * Math.sin(a))
+          : ctx.lineTo(x + ri * Math.cos(a), y + ri * Math.sin(a));
+      }
+      ctx.closePath();
+      ctx.fill();
+      // Cruz de luz
+      ctx.globalAlpha = alpha * 0.6;
+      ctx.strokeStyle = color;
+      ctx.lineWidth = 0.8;
+      ctx.beginPath();
+      ctx.moveTo(x - r * 2.5, y); ctx.lineTo(x + r * 2.5, y);
+      ctx.moveTo(x, y - r * 2.5); ctx.lineTo(x, y + r * 2.5);
+      ctx.stroke();
+      ctx.restore();
+    }
+
+    function drawShape(ctx, p) {
+      ctx.save();
+      ctx.globalAlpha = p.opacity;
+      ctx.fillStyle   = p.color;
+      ctx.strokeStyle = p.color;
+      ctx.shadowColor = p.color;
+      ctx.shadowBlur  = 6;
+      ctx.translate(p.x, p.y);
+      ctx.rotate(p.angle);
+      const s = p.size;
+
+      switch (p.shape) {
+        case 'rect':
+          ctx.fillRect(-s / 2, -s / 4, s, s / 2);
+          break;
+        case 'circle':
+          ctx.beginPath();
+          ctx.arc(0, 0, s / 2, 0, Math.PI * 2);
+          ctx.fill();
+          break;
+        case 'star':
+          ctx.restore();
+          drawStar(ctx, p.x, p.y, s / 2, 5, p.color, p.opacity);
+          return;
+        case 'triangle':
+          ctx.beginPath();
+          ctx.moveTo(0, -s / 2);
+          ctx.lineTo(s / 2, s / 2);
+          ctx.lineTo(-s / 2, s / 2);
+          ctx.closePath();
+          ctx.fill();
+          break;
+        case 'ring':
+          ctx.beginPath();
+          ctx.arc(0, 0, s / 2, 0, Math.PI * 2);
+          ctx.lineWidth = 2;
+          ctx.stroke();
+          break;
+        case 'heart':
+          ctx.beginPath();
+          ctx.moveTo(0, s * 0.25);
+          ctx.bezierCurveTo(-s * 0.5, -s * 0.1, -s * 0.6, s * 0.5, 0, s * 0.6);
+          ctx.bezierCurveTo(s * 0.6, s * 0.5, s * 0.5, -s * 0.1, 0, s * 0.25);
+          ctx.fill();
+          break;
+      }
+      ctx.restore();
+    }
+
+    function animate(ts) {
+      if (!start) start = ts;
+      const rawElapsed = ts - start;
+
+      // Cámara lenta en la última parte
+      let elapsed;
+      if (rawElapsed / TOTAL < SLOWDOWN) {
+        elapsed = rawElapsed;
+      } else {
+        const fastPart = TOTAL * SLOWDOWN;
+        const slowPart = (rawElapsed - fastPart) * 0.25; // 4x más lento
+        elapsed = fastPart + slowPart;
+      }
+
+      const progress = Math.min(elapsed / TOTAL, 1);
+      const dt = 1; // step de física
+
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      // --- RAYOS DE EXPLOSIÓN (solo primeros 300ms reales) ---
+      if (rawElapsed < 300) {
+        const rp = rawElapsed / 300;
+        rays.forEach(r => {
+          r.len = Math.min(r.len + r.speed, r.maxLen);
+          ctx.save();
+          ctx.globalAlpha = (1 - rp) * 0.7;
+          ctx.strokeStyle = r.color;
+          ctx.lineWidth   = r.width;
+          ctx.shadowColor = r.color;
+          ctx.shadowBlur  = 8;
+          ctx.beginPath();
+          ctx.moveTo(cx, cy);
+          ctx.lineTo(
+            cx + Math.cos(r.angle) * r.len,
+            cy + Math.sin(r.angle) * r.len
+          );
+          ctx.stroke();
+          ctx.restore();
+        });
+      }
+
+      // --- ESTRELLAS BRILLANTES ---
+      stars.forEach(s => {
+        s.phase += s.speed;
+        const alpha = Math.max(0, Math.sin(s.phase) * (1 - progress * 0.6)) * 0.9;
+        drawStar(ctx, s.x, s.y, s.r, s.spikes, s.color, alpha);
+      });
+
+      // --- CONFETI ---
+      particles.forEach(p => {
+        p.vx  *= p.drag;
+        p.vy  *= p.drag;
+        p.vy  += p.gravity;
+        p.x   += p.vx * dt;
+        p.y   += p.vy * dt;
+        p.angle += p.spin;
+        p.opacity = Math.max(0, 1 - progress * 1.1);
+        drawShape(ctx, p);
+      });
+
+      // --- DESTELLO CENTRAL al inicio ---
+      if (rawElapsed < 400) {
+        const fp = 1 - rawElapsed / 400;
+        ctx.save();
+        ctx.globalAlpha = fp * 0.5;
+        const grad = ctx.createRadialGradient(cx, cy, 0, cx, cy, 200);
+        grad.addColorStop(0, '#ffffff');
+        grad.addColorStop(0.3, 'rgba(0,229,195,0.6)');
+        grad.addColorStop(1, 'transparent');
+        ctx.fillStyle = grad;
+        ctx.beginPath();
+        ctx.arc(cx, cy, 200, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.restore();
+      }
+
+      if (rawElapsed < TOTAL + 2000) {
+        requestAnimationFrame(animate);
+      } else {
+        canvas.remove();
+      }
+    }
+
+    requestAnimationFrame(animate);
+  }
+</script>
 
 <!-- CASO DE EXITO -->
 <section id="caso-exito" class="case-section">
