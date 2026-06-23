@@ -947,43 +947,222 @@
 </section>
 
 <!-- BENEFICIOS -->
-<section id="beneficios" class="benefits-section">
+<section id="beneficios" style="padding: 6rem 5%; background: var(--bg2);">
   <div class="container">
     <div class="section-label">Ventajas</div>
     <h2>Por qué QualioAI<br>cambia las reglas</h2>
     <p class="section-sub">Diseñado para el ritmo real de los call centers en Colombia y Latinoamérica.</p>
 
-    <div class="benefits-grid">
-      <div class="benefit-card">
-        <div class="benefit-icon">⚡</div>
-        <h3>Velocidad 13x</h3>
+    <style>
+      .ben-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1.25rem;
+        margin-top: 3rem;
+      }
+
+      .ben-card {
+        position: relative;
+        background: var(--bg);
+        border: 1px solid var(--border);
+        border-radius: 16px;
+        padding: 2rem;
+        overflow: hidden;
+        cursor: default;
+        transition: border-color 0.3s, transform 0.3s, box-shadow 0.3s;
+      }
+
+      .ben-card:hover {
+        border-color: rgba(0,229,195,0.4);
+        transform: translateY(-4px);
+        box-shadow: 0 16px 40px rgba(0,0,0,0.3);
+      }
+
+      /* Glow de fondo que aparece en hover */
+      .ben-card::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        border-radius: 16px;
+        opacity: 0;
+        transition: opacity 0.4s;
+        pointer-events: none;
+      }
+
+      .ben-card:nth-child(1)::before { background: radial-gradient(circle at 30% 30%, rgba(0,87,255,0.12) 0%, transparent 65%); }
+      .ben-card:nth-child(2)::before { background: radial-gradient(circle at 30% 30%, rgba(0,229,195,0.10) 0%, transparent 65%); }
+      .ben-card:nth-child(3)::before { background: radial-gradient(circle at 30% 30%, rgba(0,87,255,0.10) 0%, transparent 65%); }
+      .ben-card:nth-child(4)::before { background: radial-gradient(circle at 30% 30%, rgba(0,229,195,0.10) 0%, transparent 65%); }
+      .ben-card:nth-child(5)::before { background: radial-gradient(circle at 30% 30%, rgba(0,87,255,0.12) 0%, transparent 65%); }
+      .ben-card:nth-child(6)::before { background: radial-gradient(circle at 30% 30%, rgba(0,229,195,0.08) 0%, transparent 65%); }
+
+      .ben-card:hover::before { opacity: 1; }
+
+      /* Imagen placeholder con borde redondeado — lista para cuando lleguen las imágenes */
+      .ben-img-wrap {
+        width: 100%;
+        border-radius: 12px;
+        overflow: hidden;
+        margin-bottom: 1.5rem;
+        background: var(--bg3);
+        aspect-ratio: 16/7;
+        display: flex; align-items: center; justify-content: center;
+        border: 1px solid var(--border);
+        position: relative;
+        transition: transform 0.3s;
+      }
+
+      .ben-card:hover .ben-img-wrap {
+        transform: scale(1.02);
+      }
+
+      .ben-img-wrap img {
+        width: 100%; height: 100%;
+        object-fit: cover;
+        border-radius: 12px;
+        display: block;
+      }
+
+      .ben-img-placeholder {
+        font-size: 2rem;
+        opacity: 0.3;
+      }
+
+      .ben-icon-row {
+        display: flex; align-items: center; gap: 0.75rem;
+        margin-bottom: 0.75rem;
+      }
+
+      .ben-icon {
+        width: 40px; height: 40px;
+        border-radius: 10px;
+        display: flex; align-items: center; justify-content: center;
+        font-size: 1.2rem;
+        flex-shrink: 0;
+        background: var(--blue-dim);
+        border: 1px solid rgba(0,87,255,0.2);
+        transition: background 0.3s, border-color 0.3s;
+      }
+
+      .ben-card:hover .ben-icon {
+        background: var(--teal-dim);
+        border-color: rgba(0,229,195,0.3);
+      }
+
+      .ben-card h3 {
+        font-family: 'Space Grotesk', sans-serif;
+        font-size: 1rem; font-weight: 700;
+        letter-spacing: -0.01em;
+        color: var(--text);
+      }
+
+      .ben-card p {
+        font-size: 0.875rem;
+        color: var(--muted);
+        line-height: 1.65;
+        margin-top: 0.5rem;
+      }
+
+      /* Stat resaltada que aparece en hover */
+      .ben-stat {
+        display: inline-block;
+        margin-top: 1rem;
+        font-family: 'Space Grotesk', sans-serif;
+        font-size: 0.8rem; font-weight: 700;
+        color: var(--teal);
+        letter-spacing: 0.04em;
+        opacity: 0;
+        transform: translateY(6px);
+        transition: opacity 0.3s, transform 0.3s;
+      }
+
+      .ben-card:hover .ben-stat {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      @media (max-width: 900px) {
+        .ben-grid { grid-template-columns: repeat(2, 1fr); }
+      }
+      @media (max-width: 580px) {
+        .ben-grid { grid-template-columns: 1fr; }
+      }
+    </style>
+
+    <div class="ben-grid">
+
+      <div class="ben-card">
+        <div class="ben-img-wrap">
+          <span class="ben-img-placeholder">⚡</span>
+        </div>
+        <div class="ben-icon-row">
+          <div class="ben-icon">⚡</div>
+          <h3>Velocidad 13x</h3>
+        </div>
         <p>Lo que toma 40 minutos a un analista, QualioAI lo completa en 3. Más volumen, mismo equipo.</p>
+        <span class="ben-stat">40 min → 3 min por llamada</span>
       </div>
-      <div class="benefit-card">
-        <div class="benefit-icon">🎯</div>
-        <h3>Criterio uniforme</h3>
+
+      <div class="ben-card">
+        <div class="ben-img-wrap">
+          <span class="ben-img-placeholder">🎯</span>
+        </div>
+        <div class="ben-icon-row">
+          <div class="ben-icon">🎯</div>
+          <h3>Criterio uniforme</h3>
+        </div>
         <p>Elimina la subjetividad humana. Cada llamada se evalúa con exactamente el mismo estándar de calidad.</p>
+        <span class="ben-stat">100% de consistencia en cada evaluación</span>
       </div>
-      <div class="benefit-card">
-        <div class="benefit-icon">📈</div>
-        <h3>Cobertura 100%</h3>
+
+      <div class="ben-card">
+        <div class="ben-img-wrap">
+          <span class="ben-img-placeholder">📈</span>
+        </div>
+        <div class="ben-icon-row">
+          <div class="ben-icon">📈</div>
+          <h3>Cobertura 100%</h3>
+        </div>
         <p>Analiza todas las llamadas, no solo muestras. Cumple la normativa de calidad sin ampliar tu planta.</p>
+        <span class="ben-stat">De muestreo parcial a cobertura total</span>
       </div>
-      <div class="benefit-card">
-        <div class="benefit-icon">🔍</div>
-        <h3>Retroalimentación inmediata</h3>
+
+      <div class="ben-card">
+        <div class="ben-img-wrap">
+          <span class="ben-img-placeholder">🔍</span>
+        </div>
+        <div class="ben-icon-row">
+          <div class="ben-icon">🔍</div>
+          <h3>Retroalimentación inmediata</h3>
+        </div>
         <p>Los agentes reciben hallazgos el mismo día, no semanas después. La mejora es continua y acelerada.</p>
+        <span class="ben-stat">Feedback en menos de 24 horas</span>
       </div>
-      <div class="benefit-card">
-        <div class="benefit-icon">🛡️</div>
-        <h3>Cumplimiento normativo</h3>
+
+      <div class="ben-card">
+        <div class="ben-img-wrap">
+          <span class="ben-img-placeholder">🛡️</span>
+        </div>
+        <div class="ben-icon-row">
+          <div class="ben-icon">🛡️</div>
+          <h3>Cumplimiento normativo</h3>
+        </div>
         <p>Trazabilidad completa de cada evaluación para auditorías regulatorias y entes de control.</p>
+        <span class="ben-stat">Trazabilidad total de cada evaluación</span>
       </div>
-      <div class="benefit-card">
-        <div class="benefit-icon">💰</div>
-        <h3>ROI inmediato</h3>
+
+      <div class="ben-card">
+        <div class="ben-img-wrap">
+          <span class="ben-img-placeholder">💰</span>
+        </div>
+        <div class="ben-icon-row">
+          <div class="ben-icon">💰</div>
+          <h3>ROI inmediato</h3>
+        </div>
         <p>Reduce el costo por evaluación hasta en un 80%. El retorno de inversión se alcanza en el primer mes.</p>
+        <span class="ben-stat">–80% costo operativo de calidad</span>
       </div>
+
     </div>
   </div>
 </section>
